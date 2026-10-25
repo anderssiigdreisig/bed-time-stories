@@ -1,0 +1,48 @@
+:root {
+  font-family: 'DM Sans', 'Trebuchet MS', sans-serif;
+  color: #25372f;
+  background: #f1f4eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --paper: #f6f6eb;
+  --forest: #19372f;
+  --forest-soft: #466d5b;
+  --coral: #ce6b52;
+  --sunlight: #efd98e;
+  --ink: #25372f;
+  --muted: #778178;
+  --line: #d8dfd5;
+  --serif: 'Fraunces', 'Palatino Linotype', Georgia, serif;
+
+  font-optical-sizing: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: #f1f4eb;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #efd98e;
+  color: #19372f;
+}
