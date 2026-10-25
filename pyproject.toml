@@ -1,0 +1,17 @@
+[project]
+name = "bed-time-stories"
+version = "0.1.0"
+description = "App for generating bed time stories"
+readme = "README.md"
+authors = [
+    { name = "anderssiigdreisig", email = "andersiigdreisig@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+bed-time-stories = "bed_time_stories:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
