@@ -21,13 +21,13 @@ This project is under development. A first FastAPI backend and React frontend ar
 
 ## TODO
 
-- Add Docker containerization with Docker Compose to build and start the full application.
+- Add a production Docker Compose setup that builds React, serves its assets through FastAPI on one port, and restarts the app automatically; keep provider credentials in an ignored local environment file.
 - Add a SQLite database to save generated stories for future reference.
-- Provide a dependable way to access the app from a phone on the home network, including stable addressing and automatic startup.
+- Replace phone access through the Vite development server and changing WSL port forwarding with a stable home-network setup: reserve the Windows PC's LAN address in the router, restrict the firewall rule to the private network, and use the Compose-managed app port. Consider WSL mirrored networking as an interim option on supported Windows versions.
 - Evaluate and choose a model that writes natural, correct Danish; compare quality, speed, cost, and availability.
 - Simplify the web UI and reduce the number of visible controls.
 - Cache the current story in the browser so it survives screen locking, app switching, or an accidental page refresh.
-- Add simple local access protection before exposing the app on the home network, to prevent others from using the generation endpoint.
+- Add a PIN or other simple authentication before exposing the app on the home network, so other devices cannot use the generation endpoint.
 
 ## Backend
 
