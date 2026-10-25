@@ -1,6 +1,6 @@
 # Bedtime Stories
 
-A locally hosted web app for creating personalized bedtime stories for my daughter. The frontend will use React, with a Python backend that calls the OpenAI API to generate stories and uses SQLite to store stories and app data.
+A locally hosted web app for creating personalized bedtime stories for my daughter. The frontend uses React, with a Python backend that calls a configurable chat model provider to generate stories and is intended to use SQLite for story storage.
 
 ## Goals
 
@@ -17,19 +17,28 @@ A locally hosted web app for creating personalized bedtime stories for my daught
 
 ## Status
 
-This project is under development. Setup and run instructions will be added when the application structure is in place.
+This project is under development. A first FastAPI backend and React frontend are in place; persistence and a stable home deployment remain to be implemented.
+
+## TODO
+
+- Add Docker containerization with Docker Compose to build and start the full application.
+- Add a SQLite database to save generated stories for future reference.
+- Provide a dependable way to access the app from a phone on the home network, including stable addressing and automatic startup.
+- Evaluate and choose a model that writes natural, correct Danish; compare quality, speed, cost, and availability.
+- Simplify the web UI and reduce the number of visible controls.
+- Cache the current story in the browser so it survives screen locking, app switching, or an accidental page refresh.
+- Add simple local access protection before exposing the app on the home network, to prevent others from using the generation endpoint.
 
 ## Backend
 
 The FastAPI backend exposes `GET /api/health` and `POST /api/generate`. The generate endpoint accepts a prompt and optional `skill` instructions and `context`, then returns the model reply. OpenAPI documentation is available at `/docs` while the server is running.
 
-Configure `OPENAI_API_KEY` in the environment before starting the server. OpenAI API usage may require billing; a ChatGPT subscription does not include API usage. OpenAI-compatible providers can be configured with `OPENAI_BASE_URL` and `OPENAI_MODEL`. If using a local provider that does not require authentication, setting `OPENAI_BASE_URL` is sufficient.
+Copy `.env.example` to `.env` and add your provider settings before starting the server. The `.env` file is ignored by Git. Hosted model APIs may require billing; a ChatGPT subscription does not include OpenAI API usage. OpenAI-compatible providers can be configured with `OPENAI_BASE_URL` and `OPENAI_MODEL`. If using a local provider that does not require authentication, setting `OPENAI_BASE_URL` is sufficient.
 
 Run the API locally with:
 
 ```bash
 uv sync
-export OPENAI_API_KEY="your-api-key"
 uv run uvicorn bed_time_stories.main:app --host 0.0.0.0 --reload
 ```
 
@@ -56,4 +65,4 @@ The backend will need to listen on the PC's local network interface, and the PC 
 
 ## Privacy
 
-Stories and app data are intended to be stored locally. Story generation sends prompts to the OpenAI API, so avoid including identifying or otherwise sensitive information. Keep API credentials on the backend and out of source control.
+Stories and app data are intended to be stored locally. Depending on the configured provider, story generation may send prompts to a remote service; avoid including identifying or otherwise sensitive information. Keep API credentials on the backend and out of source control.
